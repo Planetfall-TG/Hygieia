@@ -8,6 +8,7 @@ sealed class ConfirmForm : Form
     ConfirmForm(string title, IReadOnlyList<string> paragraphs, IReadOnlyList<string> paths)
     {
         Text = title;
+        Theme.ApplyIcon(this);
         BackColor = Theme.Paper;
         Font = Theme.Ui(10);
         FormBorderStyle = FormBorderStyle.FixedDialog;

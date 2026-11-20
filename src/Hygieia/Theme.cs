@@ -21,7 +21,21 @@ static class Theme
     public static readonly Color Disabled = Color.FromArgb(0x1E, 0x27, 0x36);
     public static readonly Color DisabledText = Color.FromArgb(0x66, 0x73, 0x8A);
 
+    static readonly MemoryStream IconBytes = new();
+    static readonly Icon AppIcon = LoadAppIcon();
     static AllowDarkModeForWindow? _allowDark;
+
+    public static void ApplyIcon(Form form) => form.Icon = AppIcon;
+
+    static Icon LoadAppIcon()
+    {
+        using var packed = typeof(Theme).Assembly.GetManifestResourceStream("Hygieia.App.ico");
+        if (packed == null)
+            return (Icon)SystemIcons.Application.Clone();
+        packed.CopyTo(IconBytes);
+        IconBytes.Position = 0;
+        return new Icon(IconBytes, 32, 32);
+    }
 
     public static Font Ui(float size, FontStyle style = FontStyle.Regular) => new("Segoe UI", size, style, GraphicsUnit.Point);
     public static Font Display(float size) => new("Segoe UI", size, FontStyle.Bold, GraphicsUnit.Point);

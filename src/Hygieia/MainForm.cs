@@ -49,6 +49,7 @@ sealed class MainForm : Form
     public MainForm()
     {
         Text = "Hygieia";
+        Theme.ApplyIcon(this);
         BackColor = Theme.Paper;
         Font = Theme.Ui(10);
         MinimumSize = new Size(900, 760);

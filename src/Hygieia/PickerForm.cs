@@ -16,6 +16,7 @@ sealed class PickerForm : Form
     PickerForm(string? start)
     {
         Text = "Select files and folders to scrub";
+        Theme.ApplyIcon(this);
         BackColor = Theme.Paper;
         AutoScaleMode = AutoScaleMode.None;
         Font = Theme.Ui(10);
